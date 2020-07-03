@@ -1,0 +1,70 @@
+<section class="pickup">
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Create Order - Pickup Details</h5>
+      <form [formGroup]="pickupForm">
+        <div class="form-group"
+          [ngClass]="{'error-block':form().address.errors && (form().address.dirty || form().address.touched)}">
+          <label for="address">Address</label>
+          <input type="text" class="form-control" id="address" formControlName="address">
+          <div *ngIf="form().address.errors && (form().address.dirty || form().address.touched)">
+            <p *ngIf="form().address.errors.required">Address is required.</p>
+          </div>
+        </div>
+        <div class="form-group"
+          [ngClass]="{'error-block':form().contact.errors && (form().contact.dirty || form().contact.touched)}">
+          <label for="contact">Phone Number</label>
+          <input type="text" class="form-control" id="contact" formControlName="contact">
+          <div *ngIf="form().contact.errors && (form().contact.dirty || form().contact.touched)">
+            <p *ngIf="form().contact.errors.required">Phone Number is required.</p>
+          </div>
+        </div>
+        <div class="form-group"
+          [ngClass]="{'error-block':form().whatsending.errors && (form().whatsending.dirty || form().whatsending.touched)}">
+          <label for="whatsending">What are you sending</label>
+          <select class="form-control" id="whatsending" formControlName="whatsending">
+            <option value="1">solid</option>
+            <option value="2">liquid</option>
+            <option value="3">gas</option>
+          </select>
+          <div *ngIf="form().whatsending.errors && (form().whatsending.dirty || form().whatsending.touched)">
+            <p *ngIf="form().whatsending.errors.required">Field is required.</p>
+          </div>
+        </div>
+
+        <div class="form-group"
+          [ngClass]="{'error-block':form().value.errors && (form().value.dirty || form().value.touched)}">
+          <label for="value">Parcel Value</label>
+          <input type="text" class="form-control" id="value" formControlName="value">
+          <div *ngIf="form().value.errors && (form().value.dirty || form().value.touched)">
+            <p *ngIf="form().value.errors.required">Value is required.</p>
+          </div>
+        </div>
+
+
+        <div class="form-group"
+          [ngClass]="{'error-block':form().date.errors && (form().date.dirty || form().date.touched)}">
+          <label for="date">When to arrive at this address?</label>
+          <input type="date" class="form-control" id="date" formControlName="date">
+          <div *ngIf="form().date.errors && (form().date.dirty || form().date.touched)">
+            <p *ngIf="form().date.errors.required">Date is required.</p>
+          </div>
+        </div>
+
+        <div class="form-group"
+          [ngClass]="{'error-block':form().comments.errors && (form().comments.dirty || form().comments.touched)}">
+          <label for="comments">Comments</label>
+          <input type="text" class="form-control" id="value" formControlName="comments">
+          <div *ngIf="form().comments.errors && (form().comments.dirty || form().comments.touched)">
+            <p *ngIf="form().comments.errors.required">Comments is required.</p>
+          </div>
+        </div>
+        <div class="btnContainer">
+          <button type="button" (click)="continueToOrder()" class="btn btn-primary">Continue to order</button>
+          <button type="button" (click)="replan()" class="btn btn-primary">Replan</button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</section>

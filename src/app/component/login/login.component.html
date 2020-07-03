@@ -1,0 +1,35 @@
+<section class="register">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Login</h5>
+        <form [formGroup]="loginForm">
+          
+          <div class="form-group"
+            [ngClass]="{'error-block':form().email.errors && (form().email.dirty || form().email.touched)}">
+            <label for="email">Email address</label>
+            <input type="email" class="form-control" id="email" aria-describedby="emailHelp" formControlName="email">
+            <div *ngIf="form().email.errors && (form().email.dirty || form().email.touched)">
+              <p *ngIf="form().email.errors.required">Email is required.</p>
+            </div>
+          </div>
+  
+          <div class="form-group"
+            [ngClass]="{'error-block':form().password.errors && (form().password.dirty || form().password.touched)}">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" formControlName="password">
+            <div *ngIf="form().password.errors && (form().password.dirty || form().password.touched)">
+              <p *ngIf="form().password.errors.required">Password is required.</p>
+            </div>
+          </div>
+          <div class="form-group">
+              <a routerLink="registration"> Click here to register </a>
+          </div>
+          <div class="btnContainer">
+            <button type="button" (click)="login()" class="btn btn-primary">Login</button>
+          </div>
+        </form>
+  
+      </div>
+    </div>
+  </section>
+  

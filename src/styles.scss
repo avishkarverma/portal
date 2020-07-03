@@ -1,0 +1,18 @@
+/* You can add global styles to this file, and also import other style files */
+.error-block {
+    color: crimson;
+    input {
+        border-color:crimson;
+    }
+}
+
+
+section {
+    .card {
+        margin: 5% 25%;
+        .btnContainer {
+            display: flex;
+            justify-content: space-evenly;
+        }
+    }
+}
