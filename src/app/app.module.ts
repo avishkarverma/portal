@@ -1,7 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-
+import {MatTableModule} from '@angular/material/table';
+import { MatPaginatorModule, MatSortModule } from '@angular/material';
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
@@ -33,6 +34,9 @@ import { LoginComponent } from './component/login/login.component';
     ReactiveFormsModule,
     FormsModule,
     AppRoutingModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule
   ],
   providers: [],
   bootstrap: [AppComponent]

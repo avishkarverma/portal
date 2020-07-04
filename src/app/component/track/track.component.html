@@ -1,1 +1,104 @@
-<p>track works!</p>
+<section class="track row">
+    <div class="col-md-3">
+
+        <select class="form-control" id="year" [(ngModel)]="year" (change)="checkYear()">
+            <option value="2020">2020</option>
+            <option value="2019">2019</option>
+            <option value="2018">2018</option>
+            <option value="all">Show All</option>
+        </select>
+
+        <ul class="monthList">
+            <li (click)="filterData(01)">Jan</li>
+            <li (click)="filterData(02)">Feb</li>
+            <li (click)="filterData(03)">March</li>
+            <li (click)="filterData(04)">April</li>
+            <li (click)="filterData(05)">May</li>
+            <li (click)="filterData(06)">Jun</li>
+            <li (click)="filterData(07)">July</li>
+            <li (click)="filterData(08)">August</li>
+            <li (click)="filterData(09)">Sep</li>
+            <li (click)="filterData(10)">Oct</li>
+            <li (click)="filterData(11)">Nov</li>
+            <li (click)="filterData(12)">Dec</li>
+        </ul>
+    </div>
+
+    <div class="mat-elevation-z8 col-md-9">
+  <table mat-table matSort [dataSource]="dataSource">
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="sno">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>S. No. </th>
+      <td mat-cell *matCellDef="let element"> {{element.sno}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="orderby">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> ORDER BY </th>
+      <td mat-cell *matCellDef="let element"> {{element.orderby}} </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="mobile">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> MOBILE </th>
+      <td mat-cell *matCellDef="let element"> {{element.mobile}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="date">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> DATE </th>
+      <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="pickupAdd">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> PICKUP ADD </th>
+      <td mat-cell *matCellDef="let element"> {{element.pickupAdd}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="deliveryAdd">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> DELIVERY ADD </th>
+      <td mat-cell *matCellDef="let element"> {{element.deliveryAdd}} </td>
+    </ng-container>
+
+    <!-- Actions -->
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef> Action </th>
+      <td mat-cell *matCellDef="let element">
+        <button type="button" (click)="checkStatus(element)" class="btn btn-primary" data-toggle="modal"
+          data-target="#exampleModal">Check Status</button>
+      </td>
+    </ng-container>
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[20, 50, 100]" showFirstLastButtons></mat-paginator>
+</div>
+
+</section>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Status</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        {{orderStatus}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
