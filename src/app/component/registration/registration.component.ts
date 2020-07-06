@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Router} from '@angular/router';
+import { CommonService} from "../../services/common.service";
 
 @Component({
   selector: 'app-registration',
@@ -9,7 +10,9 @@ import { Router} from '@angular/router';
 })
 export class RegistrationComponent implements OnInit {
 
-  constructor(private fb: FormBuilder, private router: Router) { }
+  constructor(private fb: FormBuilder, 
+    private router: Router,
+    private commonService: CommonService) { }
   registrationForm: FormGroup;
   ngOnInit() {
     this.createForm();
@@ -32,7 +35,11 @@ export class RegistrationComponent implements OnInit {
   submitRegistration() {
     if(this.registrationForm.valid) {
       console.log(this.registrationForm.value);
-      this.router.navigate(["pickup"]);
+      this.commonService.login(this.registrationForm.value).subscribe((res => {
+        window.sessionStorage.setItem("token",res);
+        this.commonService.setAuthentication(res);
+        this.router.navigate(["pickup"]);
+      }))
     } else {
       this.makeAllFieldTouched(this.registrationForm);
     }

@@ -14,7 +14,8 @@ import { PickupComponent } from './component/pickup/pickup.component';
 import { DeliveryComponent } from './component/delivery/delivery.component';
 import { TrackComponent } from './component/track/track.component';
 import { LoginComponent } from './component/login/login.component';
-
+import { HttpConfigInterceptor } from "./interceptor/httpconfig.interceptor";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -35,10 +36,13 @@ import { LoginComponent } from './component/login/login.component';
     FormsModule,
     AppRoutingModule,
     MatTableModule,
+    HttpClientModule,
     MatPaginatorModule,
     MatSortModule
   ],
-  providers: [],
+  providers: [
+     { provide: HTTP_INTERCEPTORS, useClass: HttpConfigInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
