@@ -45,19 +45,6 @@ export class TrackComponent implements OnInit {
   ngOnInit() {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
-    this.validateLogin();
-  }
-
-  validateLogin() {
-    if(!window.sessionStorage.getItem('token')) {
-      this.router.navigate(["login"]);
-    }
-    this.commonService.getAuthentication().subscribe(res => {
-      if(!res){
-        this.router.navigate(["login"]);
-      }
-    })
-  
   }
 
   filterData(month) {

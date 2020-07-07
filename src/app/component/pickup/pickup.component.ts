@@ -13,20 +13,7 @@ export class PickupComponent implements OnInit {
     private commonService: CommonService) { }
   pickupForm: FormGroup;
   ngOnInit() {
-    this.validateLogin();
     this.createForm();
-  }
-
-  validateLogin() {
-    if(!window.sessionStorage.getItem('token')) {
-      this.router.navigate(["login"]);
-    }
-    this.commonService.getAuthentication().subscribe(res => {
-      if(!res){
-        this.router.navigate(["login"]);
-      }
-    })
-  
   }
 
   createForm(){

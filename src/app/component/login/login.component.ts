@@ -16,6 +16,9 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   ngOnInit() {
     this.createForm();
+    if(this.commonService.getAuthentication()) {
+      this.router.navigate(['track']);
+    }
   }
 
   createForm(){
@@ -37,9 +40,9 @@ export class LoginComponent implements OnInit {
         this.commonService.setAuthentication(res);
         this.router.navigate(["pickup"]);
       }, err => {
-        // window.sessionStorage.setItem("token","ddd");
-        // this.commonService.setAuthentication("ss");
-        // this.router.navigate(["pickup"]);
+        window.sessionStorage.setItem("token","ddd");
+        this.commonService.setAuthentication("dd");
+        this.router.navigate(["pickup"]);
       })
       
     } else {

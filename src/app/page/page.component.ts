@@ -12,7 +12,7 @@ export class PageComponent implements OnInit {
 
   ngOnInit() {
     if(window.sessionStorage.getItem('token')) {
-     this.commonService.setAuthentication(window.sessionStorage.getItem('token'));
+   //  this.commonService.setAuthentication(window.sessionStorage.getItem('token'));
     }
   }
 

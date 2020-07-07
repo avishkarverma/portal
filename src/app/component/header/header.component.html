@@ -12,10 +12,10 @@
           <a class="nav-link" href="#">Register</a>
         </li> -->
         <li *ngIf="isLogin" class="nav-item">
-          <a class="nav-link " href="#">Create Order</a>
+          <a class="nav-link" routerLink="/pickup" >Create Order</a>
         </li>
         <li *ngIf="isLogin" class="nav-item">
-            <a class="nav-link " href="#">Track Order</a>
+            <a class="nav-link" routerLink="/track">Track Order</a>
         </li>
       </ul>
       <form class="form-inline my-2 my-lg-0">

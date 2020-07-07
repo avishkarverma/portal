@@ -14,13 +14,21 @@ export class HeaderComponent implements OnInit {
   ) { }
  isLogin =  false;
   ngOnInit() {
-    if(window.sessionStorage.getItem('token')) {
-      this.isLogin = true;
-    } 
-    this.commonService.getAuthentication().subscribe( res => {
-      if(res){
+    // if(window.sessionStorage.getItem('token')) {
+    //   this.isLogin = true;
+    // } 
+    // this.commonService.getAuthentication().subscribe( res => {
+    //   if(res){
+    //     this.isLogin = true;
+    //   }  else {
+    //     this.isLogin = false;
+    //   }
+    // })
+    this.isLogin =  this.commonService.getAuthentication();
+    this.commonService.getAuthAsObservable().subscribe( res => {
+      if(res) {
         this.isLogin = true;
-      }  else {
+      } else {
         this.isLogin = false;
       }
     })
@@ -31,9 +39,8 @@ export class HeaderComponent implements OnInit {
   }
 
   logout() {
-    this.commonService.setAuthentication("");
-    window.sessionStorage.removeItem('token');
-    this.router.navigate(["login"]);
+    this.commonService.logout();
+  
   }
 
 }

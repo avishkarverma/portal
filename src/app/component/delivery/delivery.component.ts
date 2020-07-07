@@ -13,21 +13,7 @@ export class DeliveryComponent implements OnInit {
   constructor(private fb: FormBuilder, private router: Router, private commonService:CommonService) { }
   deliveryForm: FormGroup;
   ngOnInit() {
-    this.validateLogin();
     this.createForm();
-  
-  }
-
-  
-  validateLogin() {
-    if(!window.sessionStorage.getItem('token')) {
-      this.router.navigate(["login"]);
-    }
-    this.commonService.getAuthentication().subscribe(res => {
-      if(!res){
-        this.router.navigate(["login"]);
-      }
-    })
   
   }
 

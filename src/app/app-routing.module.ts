@@ -5,6 +5,7 @@ import {PickupComponent} from './component/pickup/pickup.component'
 import {DeliveryComponent} from './component/delivery/delivery.component'
 import {TrackComponent} from './component/track/track.component'
 import {LoginComponent} from './component/login/login.component'
+import { AuthGuard } from './guard/auth.guard';
 
 
 const routes: Routes = [
@@ -18,13 +19,13 @@ const routes: Routes = [
     path:'registration', component: RegistrationComponent
   },
   {
-    path:'pickup', component: PickupComponent
+    path:'pickup', component: PickupComponent, canActivate:[AuthGuard]
   },
   {
-    path:'delivery', component: DeliveryComponent
+    path:'delivery', component: DeliveryComponent, canActivate:[AuthGuard]
   },
   {
-    path:'track', component: TrackComponent
+    path:'track', component: TrackComponent, canActivate:[AuthGuard]
   }
 ];
 

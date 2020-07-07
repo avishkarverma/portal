@@ -16,6 +16,9 @@ export class RegistrationComponent implements OnInit {
   registrationForm: FormGroup;
   ngOnInit() {
     this.createForm();
+    if(this.commonService.getAuthentication()) {
+      this.router.navigate(['track']);
+    }
   }
 
   createForm(){
