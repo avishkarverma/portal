@@ -45,6 +45,33 @@ export class CommonService {
     );
   }
 
+  addPickDetail(obj) {
+    return <any>(
+      this.http.post(
+        this.baseURL + "/api/CourierDelivery/addPickDetails?token=" + this.getAuthentication(), {
+          "PickupDetails": [obj]
+      })
+    );
+  }
+
+  addDeliveryDetail(obj) {
+    return <any>(
+      this.http.post(
+        this.baseURL + "/api/CourierDelivery/addDeliveryDetails?token=" + this.getAuthentication(), {
+          "DeliveryDetails": [obj]
+      })
+    );
+  }
+
+  getAllDetail() {
+    return <any>(
+      this.http.get(
+        this.baseURL + "/api/CourierDelivery/displayAllOrderDetails?token=" + this.getAuthentication())
+    );
+  }
+
+  
+
   logout() {
     window.sessionStorage.removeItem('token');
     this.authenticationSubject.next(false);

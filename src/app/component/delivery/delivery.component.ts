@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { Router} from '@angular/router';
-import { CommonService} from "../../services/common.service";
+import { Router } from '@angular/router';
+import { CommonService } from "../../services/common.service";
 
 
 @Component({
@@ -10,24 +10,24 @@ import { CommonService} from "../../services/common.service";
   styleUrls: ['./delivery.component.scss']
 })
 export class DeliveryComponent implements OnInit {
-  constructor(private fb: FormBuilder, private router: Router, private commonService:CommonService) { }
+  constructor(private fb: FormBuilder, private router: Router, private commonService: CommonService) { }
   deliveryForm: FormGroup;
   ngOnInit() {
     this.createForm();
-  
+
   }
 
-  createForm(){
+  createForm() {
     this.deliveryForm = this.fb.group({
       address: ['', [Validators.required]],
       contact: ['', [Validators.required]],
-      date: ['',[Validators.required]],
-      comments: ['',[Validators.required]],
-      nameoncard: ['',[Validators.required]],
-      cardNo: ['',[Validators.required]],
-      cvc: ['',[Validators.required]],
-      expiartionMonth: ['',[Validators.required]],
-      expiartionYear: ['',[Validators.required]],
+      date: ['', [Validators.required]],
+      comments: ['', [Validators.required]],
+      nameoncard: ['', [Validators.required]],
+      cardNo: ['', [Validators.required]],
+      cvc: ['', [Validators.required]],
+      expiartionMonth: ['', [Validators.required]],
+      expiartionYear: ['', [Validators.required]],
     });
   }
 
@@ -36,9 +36,14 @@ export class DeliveryComponent implements OnInit {
   }
 
   continueToPay() {
-    if(this.deliveryForm.valid) {
+    if (this.deliveryForm.valid) {
       console.log(this.deliveryForm.value);
-      this.router.navigate(["track"]);
+      this.commonService.addDeliveryDetail(this.deliveryForm.value).subscribe(res => {
+        this.router.navigate(["track"]);
+      }, err => {
+        console.log("Error Occured")
+      })
+
     } else {
       this.makeAllFieldTouched(this.deliveryForm);
     }
@@ -48,7 +53,7 @@ export class DeliveryComponent implements OnInit {
     this.router.navigate(["pickup"]);
   }
 
-  makeAllFieldTouched(formGroup:FormGroup) {
+  makeAllFieldTouched(formGroup: FormGroup) {
     (<any>Object).values(formGroup.controls).forEach(control => {
       control.markAsTouched();
 

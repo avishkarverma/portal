@@ -14,16 +14,7 @@ export interface TrackElement {
   deliveryAdd: string;
 }
 
-const ELEMENT_DATA: TrackElement[] = [
-  { sno: "1", orderby: 'Hydrogen', mobile: "1.0079", date: '17/03/2020', pickupAdd: "ddd", deliveryAdd: "ddd" },
-  { sno: "2", orderby: 'Helium', mobile: "4.0026", date: '18/02/2019', pickupAdd: "ddd", deliveryAdd: "ddd" },
-  { sno: "3", orderby: 'Lithium', mobile: "6.941", date: '17/04/2019', pickupAdd: "ddd", deliveryAdd: "ddd" },
-  { sno: "4", orderby: 'Beryllium', mobile: "9.0122", date: '14/05/2019', pickupAdd: "ddd", deliveryAdd: "ddd" },
-  { sno: "5", orderby: 'Boron', mobile: "10.811", date: '01/12/2018', pickupAdd: "ddd", deliveryAdd: "ddd" },
-  { sno: "6", orderby: 'Carbon', mobile: "12.0107", date: '04/11/2018', pickupAdd: "ddd", deliveryAdd: "ddd" },
-  { sno: "7", orderby: 'Boron', mobile: "10.811", date: '01/07/2020', pickupAdd: "ddd", deliveryAdd: "ddd" },
-  { sno: "8", orderby: 'Carbon', mobile: "12.0107", date: '04/06/2020', pickupAdd: "ddd", deliveryAdd: "ddd" },
-];
+let ELEMENT_DATA: TrackElement[] = []
 
 @Component({
   selector: 'app-track',
@@ -43,8 +34,20 @@ export class TrackComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.loadDetails();
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
+  }
+
+  loadDetails() {
+    this.commonService.getAllDetail().subscribe( res => {
+      ELEMENT_DATA = res;
+      this.dataSource =  new MatTableDataSource<TrackElement>(ELEMENT_DATA); 
+      this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
+    }, err => {
+      console.log("Error Occured");
+    })
   }
 
   filterData(month) {
@@ -75,7 +78,7 @@ export class TrackComponent implements OnInit {
   }
   checkStatus(ele) {
     console.log(ele);
-    this.orderStatus = "Sno: " + ele.sno + "Order By" + ele.orderby;
+    this.orderStatus = "<p><strong> Arrival Date :</strong> "+ele.date+"</p> <p><strong> Delivered Date:</strong> "+ele.date+"</p>"
   }
 
 }

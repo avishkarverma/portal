@@ -34,7 +34,12 @@ export class PickupComponent implements OnInit {
   continueToOrder() {
     if(this.pickupForm.valid) {
       console.log(this.pickupForm.value);
-      this.router.navigate(["delivery"]);
+      this.commonService.addPickDetail(this.pickupForm.value).subscribe(res => {
+        this.router.navigate(["delivery"]);
+      }, err => {
+        console.log("Error Occured")
+      })
+     
     } else {
       this.makeAllFieldTouched(this.pickupForm);
     }
