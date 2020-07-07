@@ -17,6 +17,9 @@
           <input type="text" class="form-control" id="contact" formControlName="contact">
           <div *ngIf="form().contact.errors && (form().contact.dirty || form().contact.touched)">
             <p *ngIf="form().contact.errors.required">Phone Number is required.</p>
+            <p *ngIf="form().contact.errors.pattern">Only numbers are allowed.</p>
+            <p *ngIf="form().contact.errors.minlength">Phone Number must be of 10 digit.</p>
+            <p *ngIf="form().contact.errors.maxlength">Phone Number must be of 10 digit.</p>
           </div>
         </div>
         <div class="form-group"
@@ -26,6 +29,7 @@
           <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
           <div *ngIf="form().email.errors && (form().email.dirty || form().email.touched)">
             <p *ngIf="form().email.errors.required">Email is required.</p>
+            <p *ngIf="form().email.errors.pattern">Enter valid email ID.</p>
           </div>
         </div>
 
@@ -49,6 +53,7 @@
           <input type="password" class="form-control" id="password" formControlName="password">
           <div *ngIf="form().password.errors && (form().password.dirty || form().password.touched)">
             <p *ngIf="form().password.errors.required">Password is required.</p>
+            <p *ngIf="form().password.errors.minlength">Password must be atlest 5 characters.</p>
           </div>
         </div>
         <div class="btnContainer">
